@@ -1,0 +1,16 @@
+{% extends 'pages/base.html' %}
+
+
+{% block content %}
+    <section class="container mt-5 w-75">
+        <h4 class="text-center">Subscribe</h4>
+        <form method="POST" class="authentication">
+            {% csrf_token %}
+            {{ subscribe_form.as_p }}
+            <div class="text-center">
+                <button class="btn btn-danger p-2">SUBSCRIBE</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}
+    

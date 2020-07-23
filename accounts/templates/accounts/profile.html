@@ -1,0 +1,26 @@
+{% extends 'pages/base.html' %}
+
+
+{% block content %}
+    
+<section class="profile mt-4">
+    {% if success %}
+    <h6 class="text-success">Successfully updated profile </h6>
+
+    {% else %}
+    <h6 class="text-danger">Problem updating profile</h6>
+    {% endif %}
+
+    <h5>Edit Profile</h5>
+
+    <form method='POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <!-- <input type="submit" value="UPDATE"> -->
+        <button class="btn btn-danger p-2 w-25">UPDATE</button>
+    </form>
+    
+</section>
+{% endblock %}
+    

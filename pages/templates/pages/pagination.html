@@ -1,0 +1,43 @@
+<div class="ml-4 remove" >
+    <div class="ml-1 pl-5 mb-3">
+        <span class="text-primary">
+            page {{ page.number }} of {{ page.paginator.num_pages }}
+        </span>
+    </div>
+    <ul class="pagination ">
+    {% if page.has_previous %}
+    <li class="page-link"><a href="?page={{ page.previous_page_number }}">Previous</a></li>
+    {% endif %}
+
+    {% for page in total_pages %}
+    <li class="page-item"><a href="?page={{ page }}" class="page-link">{{ page }}</a></li>
+    {% endfor %}
+    
+    {% if page.has_next %}
+    <li><a href="?page={{ page.next_page_number }}" class="page-link">Next</a></li>
+    {% endif %}  
+    </ul>
+</div>
+
+<div class="show">  
+    <ul class="pagination ml-3">
+        {% if page.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <!-- <span class="sr-only">Previous</span> -->
+          </a>
+        </li>
+        {% endif %}
+        <li class="page-item"> <a href="" class="page-link">{{ page.number }} of {{ page.paginator.num_pages }}</a> </li>
+        
+        {% if page.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+</div> 

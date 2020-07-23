@@ -1,0 +1,68 @@
+<!-- Footer -->
+<footer class="bg-dark article-words pb-3" style="overflow: hidden;">
+    {% if not user.is_authenticated %}
+    <h5 class="text-center pt-3 mr-md-5 pr-md-5 text-danger">SUBSCRIBE</h5>
+    <!-- subscribe form - displays only on small and medium  screens  -->
+    <form method="POST" class="d-lg-none mx-5 mb-3 subscribe_form_home">
+        {% csrf_token %}
+        {{ subscribe_form.as_p }}
+        <!-- <input type="submit" value="SUBSCRIBE"> -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-danger">SUBSCRIBE</button>
+        </div>
+    </form>
+    {% else %}
+    <div class="mt-4">
+
+    </div>
+    {% endif %}
+    <div class="d-flex ml-5 mt-0">
+        <div class="w-25 ">
+            <div class="footer-ul">
+                <h6>
+                    <a href="{% url 'thoughts:list_display' %}" class="text-secondary">Blog</a>
+                </h6>
+
+                <h6>
+                    <a href="{% url 'pages:home' %}" class="text-secondary">Home</a>
+                </h6>
+
+                <h6>
+                    <a href="{% url 'pages:about' %}" class="text-secondary">About</a>
+                </h6>
+
+                <h6>
+                    <a href="#" class="text-secondary">Contact</a>
+                </h6>
+            </div>
+        </div>
+        
+        {% if not user.is_authenticated %}
+        <!-- subscribe form in footer (does not display on small screens -->
+        <div class="mr-auto ml-5 pl-5 d-none d-lg-inline" >
+            <form method="POST" class="subscribe_form_home">
+                {% csrf_token %}
+                {{ subscribe_form.as_p }}
+               <div class="text-center">
+                <button type="submit" class="btn btn-danger">SUBSCRIBE</button>
+               </div>
+            </form>
+        </div>
+        {% else %}
+        <div class="mt-4">
+
+        </div>
+        {% endif %}
+
+        <!-- Social links -->
+        <div class="ml-auto mr-3 mr-sm-5 remove">
+            <h6 class="text-center">Media</h6>
+            <p>
+                <a href="" class="text-primary pr-5"><span class="fa fa-facebook fa-lg"></span></a>
+                <a href="" class="text-primary pr-5"><span class="fa fa-twitter fa-lg"></span></a>
+                <a href="" class="text-danger"><span class="fa fa-instagram fa-lg"></span></a>
+            </p>
+        </div>
+    </div>
+    <small class="ml-2 mt-5 ml-sm-5">&copy; Copyright 2020, Programming <span class="ml-2 ml-sm-0">Stories</span></small>
+</footer>

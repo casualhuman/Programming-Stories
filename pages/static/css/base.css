@@ -1,0 +1,302 @@
+#body{
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #000;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.blog_site_color{
+    background-color: #fff;
+    padding-left: 300px;
+    padding-right: 300px;
+    padding-top: 20px;
+    line-height: 1.0cm;
+    
+}
+
+/* Forms */ 
+form label{
+    color: #000;
+    text-transform: capitalize;
+
+}
+
+form input{
+    background-color:#fff;
+    padding: 5px;
+    width: 100%;
+    border: 5px;
+    border-color: red;
+    text-align: left;
+    
+}
+
+.authentication input{
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.subscribe_form_home label{
+    font-size: 16px;
+}
+
+.subscribe_form_home input{
+    padding: 0px;
+    border-radius: 5px;
+}
+
+.search{
+    width: 50%;
+}
+
+.search input{
+    border-radius: 5px;
+}
+
+.showcase{
+    margin-top: 0;
+    background-image: url('../images/coding.png');
+    background-repeat:no-repeat;
+    min-height: 600px;
+    background-size: cover;
+}
+
+.showcase p{
+    color: #cfcbcb;
+    font-size: 20px;
+}
+
+
+.article-words{
+    color: #000;
+    font-size: 20px;
+}
+
+.article-words p{
+    font-family: 'Raleway', sans-serif;
+}
+
+.article-words img{
+    height: 300px;
+}
+
+.article-words h3{
+    height: 50px;
+}
+
+.reads_link{
+    color: #000;
+}
+
+.reads_link:hover{
+    color: #000;
+    text-decoration: none;
+}
+.tag_button{
+    padding: 3px 5px;
+    text-transform: capitalize;
+    border-radius: 3px;
+    background-color: #343a40;
+    margin-left: 5px;
+}
+
+
+.tag_button a{
+    color: white;
+    text-decoration: none;
+}
+
+.selected{
+    color: #bdbcbc;
+    text-decoration: none;
+}
+
+
+.suggestions{
+    background: #bdbcbc ;
+}
+
+
+.footer-ul li{
+    list-style: none;
+    padding-left: none;
+}
+
+.report{
+    margin-left: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 25%;
+    
+}
+
+
+.password_reset input{
+    width: 25%;
+}
+
+.reset_confirm{
+    margin-left: 300px;
+    width: 50%;
+    margin-top: 20px;
+}
+.reset_confirm input{
+    width: 50%;
+}
+#list img{
+    height: 300px;
+    
+}
+
+#list .card-body{
+    /* height: 350px; */
+    max-width: 400px; 
+    max-height: 250px;
+}
+
+#responsive_list{
+    display: none;
+}
+
+#detail_display{
+    /* width: 50%; */
+    margin-top: 20px;
+    background-color: #fff;
+    /* overflow: hidden; */
+}
+
+#detail_display textarea{
+    background-color: #f4f4f4;
+}
+
+textarea {
+    width: 300px;
+    height: 150px;
+    background-color: #fff;
+  }
+
+
+.options li{
+    list-style: none;
+}
+
+.profile{
+    margin: auto;
+    width: 50%;
+}
+
+.show{
+    display: none;
+}
+
+ 
+    
+.dropdown {
+    position: absolute;
+    display: inline-block;
+}
+
+.comment_submit{
+    width: 25%;
+}
+    
+   
+@media(max-width: 1025px){
+    #list .card-body{
+        max-height: 400px;
+        max-width: 400px; 
+    }
+
+    .blog_site_color{
+        background-color: #fff;
+        padding: 5px;
+        width: 100%;
+        /* overflow: hidden; */
+    }
+
+    
+}
+
+
+@media(max-width:750px){
+
+    #list{
+        display: none;
+    }
+
+    #responsive_list{
+        display: block;
+       
+    }
+
+    .search{
+        width: 90%;
+    }
+    
+    .report{
+        margin: 0px;
+        padding: 20px;
+        width: 80%;
+    }
+
+    .password_reset input{
+        width: 80%;
+    }
+
+    .reset_confirm{
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 80%;
+    }
+    
+    .reset_confirm input{
+        width: 100%;
+    }
+
+    .profile{
+        margin: auto;
+        width: 80%;
+    }
+
+
+    #detail_display{
+        width: 100%;
+        
+    }
+
+    .comment_submit{
+        width: 30%;
+    }
+   
+}
+
+@media(max-width:768px){
+    #list{
+        display: none;
+    }
+
+    #responsive_list{
+        display: block;
+        margin-left: 20px;
+        margin-right: 20px;
+       
+    }
+}
+
+@media(max-width:295px){
+    .remove{
+        display: none;
+    }
+
+    .show{
+        display: contents;
+    }
+}
+
+

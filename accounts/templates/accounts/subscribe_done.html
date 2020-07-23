@@ -1,0 +1,14 @@
+{% extends 'pages/base.html' %}
+
+
+{% block title %}Subscribe | Done{% endblock %}
+    
+{% block content %}
+    <section class="container mt-5">
+        <h5>Subscribed successfully</h5>
+        <h6><i>{{ name }}</i>, welcome you would be the first to receive our stories </h6>
+        <p><a href="{% url 'thoughts:list_display' %}" class="text-danger">Go To Blog</a></p>
+
+    </section>
+{% endblock %}
+

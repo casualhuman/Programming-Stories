@@ -1,0 +1,23 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+
+<div class="report remove">
+    {% if sent %}
+    <br>
+    <p>Thanks for reporting the problem it would be fixed soon we are currently working on it...</p>
+    <p><a href="{% url 'thoughts:list_display' %}">Go back to Blog</a></p>
+
+    {% else %}
+        <h5>Having some troubles with the site.. tell us about it </h5>
+        <br>
+        <form method='POST'>
+            {% csrf_token %}
+            {{ report_form.as_p }}
+            <input type="submit" value="Report" class="btn btn-dark comment_submit">
+        </form>
+
+    {% endif %}
+    
+</div>
+{% endblock %}

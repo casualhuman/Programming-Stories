@@ -1,0 +1,52 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+
+{% block content %}
+
+<section class="container  mt-4">
+    {% if query %}
+        
+        <h3><small>result for</small> <span style="font-family: 'Raleway', sans-serif;">{{ query }}</span></h3>
+        {% with results.count as total_results %}
+        <h5>{{ total_results }} result{{ total_results|pluralize }}</h5>
+        {% endwith %}
+
+        {% for post in results %}
+        <h4 class="mt-3">
+            <a href="{{ post.get_absolute_url }}" class="text-warning" style="font-family: 'Raleway', sans-serif;">
+            {{ post.title }}
+            </a>
+        </h4>
+        {% empty %}
+        <h6>Sorry not found, happy reading :)</h6>
+        <a href="{% url 'pages:search' %}" class="text-primary">Search Again</a>
+        <p>or</p>
+        <a href="{% url 'thoughts:list_display' %}" class="text-warning">Back to Blog</a>
+
+        {% endfor %}
+    
+
+    {% else %}
+   
+    <form method="GET" class="search d-flex mt-4">
+        
+        <div >
+
+            {{ search_form.as_p }}
+        </div>
+        <div class="ml-1">
+            
+            <input type="submit" value="search" class="bg-warning"> 
+        </div>
+        
+    </form>
+    
+    {% endif %}
+
+    <!-- end search_bar -->
+</section>
+    
+{% endblock %}
+    

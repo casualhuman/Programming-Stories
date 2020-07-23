@@ -1,0 +1,85 @@
+
+{% extends 'pages/base.html' %}
+{% load static %}
+{% block content %}
+<div class="blog_site_color ">
+<section class="container-fluid m-2">
+    <div id="detail_display">
+        <div class="media" >
+            <div class="media-body">
+                <h3 class="text-center">{{ post.title }} </h3>
+                <i>{{ post.publish }}</i>
+                <div class="text-justify" style="font-family: 'Raleway', sans-serif;">
+                    <p >{{ post.body|linebreaks }}</p>
+                </div>
+                
+            </div>
+        </div>
+        
+
+        <div class="py-3">
+            {% for tag in post.tags.all %}
+                <span class="pr-2">
+                    <a href="{% url 'thoughts:list_display_by_tag' tag.slug %}" 
+                        class="bg-dark text-white p-1 card-link" 
+                        style="border-radius: 2px; font-family: 'Raleway', sans-serif;">
+                    {{ tag }}
+                    </a>
+                </span>
+                
+            {% endfor %}
+        </div>
+        
+        <div class="remove pb-3">
+            {% with comments.count as total_comments %}
+                <h5>Comment{{ total_comments|pluralize }}</h5>
+            {% endwith %}
+            {% for comment in comments %}
+            <div class="d-flex">
+                <div>
+                    <!-- <img  src= "{% static 'profile_pics/3.png' %}" alt="John Doe" class="rounded-circle  mr-1" style="width:40px;"> -->
+                    <span>{{ profile_pic }}</span>
+                </div>
+
+                <div class="bg-light p-2 mb-2">
+                    <h6>{{ comment.name }} <small><i>{{ comment.publish }}</i></small></h6>
+                    <hr>
+                    <p >{{ comment.comment|linebreaks }}</p>
+                </div>
+            </div>
+            
+            {% empty %}
+                <p>No Comments yet</p>
+            {% endfor %}
+            
+            {% if user.is_authenticated %}
+            
+                {% if new_comment %}
+                    <h6>Comment has been submitted</h6>
+                    <form method='POST'>
+                        {% csrf_token %}
+                        {{ comment_form.as_p }}
+
+                        <input type="submit" value="comment" class="d-none d-sm-content btn btn-dark comment_submit">
+                    </form>
+
+                {% else %}
+                    <h6>Comment:</h6>
+                    <form method='POST' class="w-75">
+                        {% csrf_token %}
+                        {{ comment_form.as_p }}
+                        <!-- {{ comment_form.instance.comment }} -->
+                        <input type="submit" value="submit" class="btn btn-dark comment_submit">
+                    </form>
+                {% endif %}
+            {% else %}
+                <h6> <a href="{% url 'login' %}" class="text-primary">Login </a>to comment <span class="text-warning">;)</span></h6>
+            {% endif %}
+            
+    
+        </div>
+    </div>
+</section>
+{% endblock %}
+</div>
+

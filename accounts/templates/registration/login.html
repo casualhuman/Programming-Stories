@@ -1,0 +1,31 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+<section class="container">
+    <div class="d-flex justify-content-center my-md-5 mx-md-5">
+        <div class="px-md-5 py-5 remove">
+            <form method='POST' class="authentication">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="hidden" name="next" value="{{ next }}" />
+                <input type="submit" value="LOGIN" class="btn btn-warning text-dark w-100">
+
+                
+                <a href="{% url 'password_reset' %}" class="text-danger">Forget Password</a>
+                
+                
+               
+            </form>
+            <p class="text-center pt-1">_______________ or _______________</p>
+            <!-- <p class="bg-primary text-white my-3 p-1"><a href="{% url 'social:begin' 'facebook' %}" class="text-white nav-link"><i class="fa fa-facebook fa-lg"></i>  Continue with facebook</a></p> -->
+            <p class="bg-danger text-white p-1"><a href="{% url 'social:begin' 'google-oauth2' %}" class="text-white nav-link"><i class="fa fa-google fa-lg"></i> Continue with Google</a></p>
+ 
+            
+        </div>
+
+        
+        
+    </div>
+    
+</section>
+{% endblock %}

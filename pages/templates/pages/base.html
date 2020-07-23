@@ -1,0 +1,150 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="{% static 'css\base.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css\bootstrap.css' %}">
+
+    <!-- goggle fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@700&display=swap" rel="stylesheet">
+    
+    
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    
+    <title>{% block title %}{% endblock %}</title>
+    
+</head>
+    
+
+<body id="body">
+    <header class="text-dark bg-secondary">
+        <nav class="navbar navbar-expand-lg ml-md-3 pt-2" >
+            <div>
+                <a href="" class="fa fa-bars fa-lg text-light nav-link navbar-toggler " data-toggle="collapse" data-target="#collapsibleNavbar"></a>
+            </div>
+            <div class="mx-auto remove">
+                <span >
+                    <a href="" class="navbar-brand text-light ml-0">PROGRAMMING STORIES</a>
+                </span>
+            </div>
+            
+            <!-- Navbar links(collapsible) -->
+            <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                
+                
+                <!-- Left Part of navbar -->
+                <ul class="navbar-nav  text-uppercase mx-auto" >
+                    <li class="p-2"">
+
+                        <a href="{% url 'pages:home' %}" 
+                            {% if section == "home" %}class="text-warning nav-link"
+                            {%else%}class="nav-link text-dark"
+                            {% endif %}>
+                            Home
+                        </a>
+                        
+                    </li>
+
+                    <li class="p-2"">
+                        <a href="{% url 'thoughts:list_display' %}" 
+                            {% if section == "blog" %}class="text-warning nav-link"
+                            {%else%}class="nav-link text-dark"
+                            {% endif %}>
+                            Blog
+                        </a>
+                        
+                    </li>
+
+                    <li class="p-2"">
+                        <a href="{% url 'pages:about' %}" 
+                            {% if section == "about" %}class="text-warning nav-link"
+                            {%else%}class="nav-link text-dark"
+                            {% endif %}>
+                            About
+                        </a>
+                        
+                    </li>
+
+                    <li class="p-2"">
+                        <a href="{% url 'pages:report-problem' %}" class="nav-link text-dark">
+                            Contact
+                        </a>
+                    </li>
+
+                    <li class="p-2 mt-2 text-lowercase">
+                        <a href="{% url 'pages:search' %}" class="text-dark"><span class="fa fa-search fa-lg"></span></a>
+                    </li>
+
+                </ul>
+
+                {% if user.is_authenticated %}
+
+                <!-- Right Part of navbar -->
+                <ul class="navbar-nav ml-md-auto ml-2 mt-3 mt-md-0">
+                    <li class="nav-item dropdown">
+                        <a class="fa fa-cog fa-lg text-light nav-link d-none d-lg-inline dropdown-toggle " href="#" id="navbardrop" data-toggle="dropdown" aria-expanded="false">  
+                        </a>
+                        <a class="fa fa-cog fa-lg text-light nav-link d-lg-none " href="#" id="navbardrop" data-toggle="dropdown" aria-expanded="false">  
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbardrop">
+                            <a href="{% url 'profile' %}" class="dropdown-item">
+                                Profile
+                            </a>
+
+                            <a href="{% url 'password_change' %}" class="dropdown-item">
+                                Password Change
+                            </a>
+
+                            <a href="{% url 'logout' %}" class="dropdown-item">
+                                Logout
+                            </a>
+                        </div> 
+                    </li>
+                    
+                </ul>
+
+                {% else %}
+                <ul class="navbar-nav ml-auto text-uppercase">
+                    
+                    <li class="p-2"">
+                        <span class="btn btn-outline-dark btn-sm mr-1">
+                            <a href="{% url 'login' %}" class="px-1 py-1 nav-link text-dark">
+                                Login
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="p-2" >
+                        <span class="btn btn-warning btn-sm">
+                            <a href="{% url 'register' %}" class="px-1 py-1 nav-link text-dark">
+                                Signup
+                            </a>
+                        </span>
+                        
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
+        </nav>
+
+        <hr class="mt-0 mb-0">
+    </header>
+
+    
+    {% block content %}
+    {% endblock %}
+    
+
+</body>
+</html>

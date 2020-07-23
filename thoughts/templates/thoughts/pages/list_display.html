@@ -1,0 +1,66 @@
+{% extends 'pages/base.html' %}
+
+{% load static %}
+{% block title %}Programming Stories {% endblock %}
+{% block content %}
+
+<section class="ml-md-3 mt-md-4">
+    {% if tag %}
+        <h5 class="text-decoration-underline"><i>{{ tag|capfirst }} </i><small>tags</small></h5>
+    {% endif %}
+    <!-- html when the screen is 780px or less  -->
+    <div id="responsive_list">
+        {% for post in posts %}
+        <div class="card mb-3">
+            <img class="card-img-top" src="{% static 'profile_pics/2.png' %}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ post.get_absolute_url }}" class="text-dark">{{ post.title }}</a></h5>
+                <p class="card-text" style="font-family: 'Raleway', sans-serif;">{{ post.body|truncatechars:200 }}</p>
+                <p><a href="{{ post.get_absolute_url }}" class="card-link"> read more</a></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- html when the screen is more than 780px  -->
+    <div id='list'>
+        <div class="d-flex ">
+            <div class="d-flex flex-column px-4">
+                {% for post in even_index_posts %}
+                <div class="card mb-3 shadow bg-white rounded">
+                    <img class="card-img-top" src="{% static 'profile_pics/1.png' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{ post.get_absolute_url }}" class="text-dark">{{ post.title }}</a></h5>
+                        <p class="card-text" style="font-family: 'Raleway', sans-serif;">
+                            {{ post.body|truncatechars:200 }}
+                        </p>
+                        <p><a href="{{ post.get_absolute_url }}" class="card-link "> read more</a></p>
+                    </div>
+                </div>
+                {% endfor %}        
+            </div>
+    
+            <div class="d-flex flex-column mr-5 px-5">
+                {% for post in odd_index_posts %}
+                <div class="card mb-3">
+                    <img class="card-img-top" src="{% static 'profile_pics/2.png' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{ post.get_absolute_url }}" class="text-dark">{{ post.title }}</a></h5>
+                        <p class="card-text" style="font-family: 'Raleway', sans-serif;">
+                            {{ post.body|truncatechars:200 }}
+                        </p>
+                        <p><a href="{{ post.get_absolute_url }}" class="card-link"> read more</a></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% include 'pages/pagination.html' with page=posts %}
+    
+</section>
+
+{% include 'pages/footer.html' %}
+
+{% endblock %}
+

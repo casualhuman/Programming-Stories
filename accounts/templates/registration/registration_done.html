@@ -1,0 +1,11 @@
+{% extends 'pages/base.html' %}
+
+
+{% block content %}
+    
+    <section class="container">
+        <h3>Hello {{ new_user.username }} you successfully Signed up </h3>
+        <h5><a href="{% url 'login' %}">Login Here</a></h5>
+    </section>
+{% endblock %}
+    

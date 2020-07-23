@@ -1,0 +1,130 @@
+{% extends 'pages/base.html' %}
+
+{% load static %}
+
+{% block title %}Programming Stories | home {% endblock %}
+
+{% block content %}
+<div class="bg-white">
+
+{% block header %}
+{% endblock %}
+
+<!-- top welcoming page with the image background and five article suggestions  -->
+<section class="showcase d-md-flex flex-row">
+    <div class="ml-5 mr-2 w-75">
+        <div class="pt-5 mt-md-5">
+            {% if user.is_authenticated %}
+            <h5 class="text-warning">Hello {{ user.username }}</h5>
+            {% endif %}
+
+            <h2 class="text-white text-uppercase remove" >
+                <div class="mt-5"></div>
+                <span style="font-family: 'Mukta', sans-serif;">Heard You Absolutely Love coding <span class="text-warning">:)</span>
+            </h2>
+        
+            <p class="pt-4" style="font-family: 'Raleway', sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                quis nostrud exercitation ullamco
+            </p>
+            
+            {% if user.is_authenticated %}
+            <p></p>
+            {% else %}
+            <p class="pt-3">
+                <a href="{% url 'subscribe' %}" class="btn btn-warning p-2 text-dark nav-item">SUBSCRIBE</a>
+            </p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- suggestions -->
+    <div class="pt-5 mt-5 pb-3 pb-lg-none mx-2 ml-lg-0 mr-md-2 mr-lg-5">
+        <div class="mt-5"></div>
+        <ul class="list-group">
+            <h4 class="text-center text-warning">Just For You </h4>
+            {% for post in posts %}
+                <li class="suggestions list-group-item bg-secondary" style="font-family: 'Raleway', sans-serif;">
+                    <a href="{{ post.get_absolute_url }}" class="text-warning">{{ post}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</section>
+
+
+<!-- display the five recent posts -->
+<section class="px-2 remove">
+
+    <!-- Top row with two articles-->
+    <div class="d-md-flex flex-row my-md-5 article-words">
+        <div class="shadow-lg p-4 reads mx-2 mx-sm-5 ">
+            <h3><a href="{{ post_1.get_absolute_url }}" class="card-link text-warning ">{{ post_1.title }}</a></h3>
+            <small class="text-muted"><i>{{ post_1.publish }}</i></small>
+            <p class="text-justify">
+               <a href="{{ post_1.get_absolute_url }}" class=" card-link text-dark"> {{ post_1.body|truncatechars:295 }}</a>  
+            </p>
+        </div>
+
+        <div class="p-4 bg-white mx-2 mx-sm-5">
+            <h3><a href="{{ post_2.get_absolute_url }}" class="card-link text-warning">{{ post_2.title }}</a></h3>
+            <small class="text-muted"><i>{{ post_2.publish }}</i></small>
+            <p class="text-justify">
+                <a href="{{ post_2.get_absolute_url }}" class="reads_link">{{ post_2.body|truncatechars:295 }}</a> 
+            </p>
+            
+        </div>
+        
+    </div>
+
+    <!-- Bottom row with three posts -->
+    <div class="d-lg-flex flex-row mt-3 mb-5 pb-5 article-words">
+        <div class="bg-light card  m-4 ml-lg-4 mr-lg-5">
+            <a href="{{ post_3.get_absolute_url }}">
+                <img class="card-img-top" src="{% static 'profile_pics/2.png' %}" alt="Card image cap">
+            </a>
+            <div class="card-body p-3">
+                <h3 class="text-center card-title"><a href="{{ post_3.get_absolute_url }}" class="text-dark card-link">{{ post_3.title }}</a></h3>
+                <small class="text-center"><i>{{ post_3.publish }}</i></small>
+                <p class="text-justify"> 
+                    <a href="{{ post_3.get_absolute_url }}" class="card-link text-dark">{{ post_3.body|truncatechars:295 }}</a>  
+                </p>
+            </div>
+        </div>
+
+
+        <div class="bg-light card text-dark m-4 m-lg-0 mt-lg-4 mb-lg-4">
+            <a href="{{ post_4.get_absolute_url }}">
+                <img class="card-img-top" src="{% static 'profile_pics/1.png' %}" alt="Card image cap">
+            </a>
+            <div class="card-body p-3">
+                <h3 class="text-center card-title"><a href="{{ post_4.get_absolute_url }}" class="text-dark card-link">{{ post_4.title }}</a></h3>
+                <small class="card-subtitle text-muted"><i>{{ post_4.publish }}</i></small>
+                <p class="text-justify">
+                    <a href="{{ post_4.get_absolute_url }}" class="card-link text-dark">{{ post_4.body|truncatechars:295 }}</a>
+                </p>
+            </div>
+        </div>
+
+
+        {% block stage %}
+        <div class="bg-light card m-4 ml-lg-5 mr-lg-4">
+            <a href="{{ post_5.get_absolute_url }}">
+                <img class="card-img-top" src="{% static 'profile_pics/1.png' %}" alt="Card image cap">
+            </a>
+            <div class="card-body p-3">
+                <h3 class="text-center card-title"><a href="{{ post_5.get_absolute_url }}" class="text-dark card-link">{{ post_5.title }}</a></h3>
+                <small class="text-center card-subtitle text-muted"><i>{{ post_5.publish }}</i></small>
+                <p class="text-justify card-text">
+                    <a href="{{ post_5.get_absolute_url }}" class="card-link text-dark">{{ post_5.body|truncatechars:295 }}</a>
+                </p>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+</section>
+
+{% include 'pages/footer.html' %}
+</div>
+{% endblock %}
