@@ -151,11 +151,11 @@ form input{
 }
 #list img{
     height: 300px;
+    width: 400px;
     
 }
 
 #list .card-body{
-    /* height: 350px; */
     max-width: 400px; 
     max-height: 250px;
 }
@@ -165,10 +165,9 @@ form input{
 }
 
 #detail_display{
-    /* width: 50%; */
     margin-top: 20px;
     background-color: #fff;
-    /* overflow: hidden; */
+    
 }
 
 #detail_display textarea{
@@ -208,6 +207,7 @@ textarea {
     
    
 @media(max-width: 1025px){
+
     #list .card-body{
         max-height: 400px;
         max-width: 400px; 
@@ -217,7 +217,12 @@ textarea {
         background-color: #fff;
         padding: 5px;
         width: 100%;
-        /* overflow: hidden; */
+    }
+
+    #list img{
+        height: 300px;
+        width: 300px;
+        
     }
 
     
@@ -230,8 +235,10 @@ textarea {
         display: none;
     }
 
+
     #responsive_list{
         display: block;
+        margin-top: 20px;
        
     }
 
@@ -284,8 +291,13 @@ textarea {
     #responsive_list{
         display: block;
         margin-left: 20px;
-        margin-right: 20px;
-       
+        margin-right: 20px;  
+    }
+
+    #responsive_list img{
+        max-height: 250px;
+        width: 100%;
+            
     }
 }
 

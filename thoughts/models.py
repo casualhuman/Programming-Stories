@@ -1,8 +1,10 @@
 from django.db import models 
-from django.contrib.auth.models import User 
-from django.utils import timezone
 from django.urls import reverse
+from django.utils import timezone
+from django.utils.safestring import mark_safe
+from django.contrib.auth.models import User 
 from taggit.managers import TaggableManager
+
 
 # Creates a manger that returns the published articles 
 class PublishedManger(models.Manager):
@@ -34,7 +36,11 @@ class Post(models.Model):
     )
 
     description = models.CharField(blank=True, max_length=100)
+
     body = models.TextField()
+
+    showcase_image = models.ImageField(upload_to="showcase_images/%Y/%m/%d",
+                              blank=True)
 
     publish = models.DateTimeField(default=timezone.now)
 
@@ -73,6 +79,13 @@ class Post(models.Model):
         
         )
     
+    def image(self):
+        """
+        if post.showcase images is called directly it returns just a path this return the full image 
+        """
+
+        image_route = """<img class="card-img-top" src="/media/""" + str(self.showcase_image.name) + """" alt="Card image cap">"""
+        return mark_safe(image_route)
 
 
 class Comment(models.Model):
@@ -84,6 +97,9 @@ class Comment(models.Model):
     name = models.CharField(max_length=50, null=True)
 
     email = models.EmailField(null=True)
+
+    photo = models.ImageField(upload_to="comments/%Y/%m/%d",
+                              blank=True)
 
     comment = models.TextField()
 
@@ -98,6 +114,15 @@ class Comment(models.Model):
 
     def __str__(self): 
         return f'Comment by {self.name} on {self.post}'
+
+
+    def profile_picture(self):
+        """
+        if comment.profile_picture is called directly it returns just a path this return the full image 
+        """
+        # class="rounded-circle  mr-1" style="width:40px;"
+        image_route = """<img src="/media/""" + str(self.photo.name) + """" alt="image" class="rounded-circle" style="width:40px; height:40px;">"""
+        return mark_safe(image_route)
 
 
         

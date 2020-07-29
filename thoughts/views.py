@@ -6,7 +6,7 @@ from taggit.models import Tag
 from django.utils.safestring import mark_safe 
 from accounts.models import Profile
 from django import forms
-import math 
+import math, random
 
 
 
@@ -45,7 +45,7 @@ def list_display(request, tag_slug=None):
     even_index_posts = [post for post in posts_list if posts.index(post) % 2 == 0]
     odd_index_posts = [post for post in posts_list if posts.index(post) % 2 == 1]
 
-
+    
     return render(request, 'thoughts/pages/list_display.html', {'posts': posts,
                                                                 'page': page,
                                                                 'total_pages': total_pages,
@@ -84,6 +84,7 @@ def detail_display(request, year, month, day, post_slug, tag_slug=None):
             # so we add the current post we are in  to the post field
             new_comment.name = request.user.username 
             new_comment.email = request.user.email
+            new_comment.photo = request.user.profile.photo
 
             new_comment.save()  
         comment_form = CommentForm()
@@ -94,11 +95,11 @@ def detail_display(request, year, month, day, post_slug, tag_slug=None):
     # for static image 
     # image_route = "{% static 'profile_pics/3.png' %}"
     
-    image_route = """<img  src= "/static/profile_pics/3.png" alt="John Doe" class="rounded-circle  mr-1" style="width:40px; height:40px;">"""
-    image_route_list = image_route.split('3', 1)
-    image_route_list[0] = image_route_list[0] + '2'
-    image_route = ''.join(image_route_list)
-    image_route = mark_safe(image_route)
+    # image_route = """<img  src= "/static/profile_pics/3.png" alt="John Doe" class="rounded-circle  mr-1" style="width:40px; height:40px;">"""
+    # image_route_list = image_route.split('3', 1)
+    # image_route_list[0] = image_route_list[0] + str(random.randint(1, 3))
+    # image_route = ''.join(image_route_list)
+    # image_route = mark_safe(image_route)
 
     # profile = Profile.objects.list_values('photo', flat=True).filter(user=request.user.username)
     # profile = profile[0]
@@ -112,6 +113,6 @@ def detail_display(request, year, month, day, post_slug, tag_slug=None):
                                                                   'comment_form': comment_form,
                                                                   'new_comment': new_comment,
                                                                   'section': 'blog',
-                                                                  'profile_pic': image_route
+                                                                #   'profile_pic': image_route
                                                                   }
     )

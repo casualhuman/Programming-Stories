@@ -4,13 +4,7 @@
 {% block content %}
     
 <section class="profile mt-4">
-    {% if success %}
-    <h6 class="text-success">Successfully updated profile </h6>
-
-    {% else %}
-    <h6 class="text-danger">Problem updating profile</h6>
-    {% endif %}
-
+    {% if success == 'empty' %}
     <h5>Edit Profile</h5>
 
     <form method='POST' enctype="multipart/form-data">
@@ -20,6 +14,15 @@
         <!-- <input type="submit" value="UPDATE"> -->
         <button class="btn btn-danger p-2 w-25">UPDATE</button>
     </form>
+    
+    {% elif success %}
+    <h6 class="text-success">Successfully updated profile </h6>
+    <p>Back to <a href="{% url 'thoughts:list_display' %}">Blog</a></p>
+    
+    {% else %}
+    <h6 class="text-danger">Problem updating profile</h6>
+    {% endif %}
+
     
 </section>
 {% endblock %}

@@ -31,14 +31,13 @@
         </div>
         
         <div class="remove pb-3">
+            {% for comment in comments %}
             {% with comments.count as total_comments %}
                 <h5>Comment{{ total_comments|pluralize }}</h5>
             {% endwith %}
-            {% for comment in comments %}
             <div class="d-flex">
                 <div>
-                    <!-- <img  src= "{% static 'profile_pics/3.png' %}" alt="John Doe" class="rounded-circle  mr-1" style="width:40px;"> -->
-                    <span>{{ profile_pic }}</span>
+                    {{ comment.profile_picture }}
                 </div>
 
                 <div class="bg-light p-2 mb-2">
@@ -59,8 +58,7 @@
                     <form method='POST'>
                         {% csrf_token %}
                         {{ comment_form.as_p }}
-
-                        <input type="submit" value="comment" class="d-none d-sm-content btn btn-dark comment_submit">
+                        <input type="submit" value="comment" class="btn btn-dark comment_submit">
                     </form>
 
                 {% else %}

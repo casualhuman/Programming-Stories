@@ -12,7 +12,9 @@
     <div id="responsive_list">
         {% for post in posts %}
         <div class="card mb-3">
-            <img class="card-img-top" src="{% static 'profile_pics/2.png' %}" alt="Card image cap">
+            <a href="{{ post.get_absolute_url }}" >
+                {{ post.image }}
+            </a>
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ post.get_absolute_url }}" class="text-dark">{{ post.title }}</a></h5>
                 <p class="card-text" style="font-family: 'Raleway', sans-serif;">{{ post.body|truncatechars:200 }}</p>
@@ -27,8 +29,10 @@
         <div class="d-flex ">
             <div class="d-flex flex-column px-4">
                 {% for post in even_index_posts %}
-                <div class="card mb-3 shadow bg-white rounded">
-                    <img class="card-img-top" src="{% static 'profile_pics/1.png' %}" alt="Card image cap">
+                <div class="card mb-3 bg-white rounded">
+                    <a href="{{ post.get_absolute_url }}">
+                        {{ post.image }}
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title"><a href="{{ post.get_absolute_url }}" class="text-dark">{{ post.title }}</a></h5>
                         <p class="card-text" style="font-family: 'Raleway', sans-serif;">
@@ -43,7 +47,9 @@
             <div class="d-flex flex-column mr-5 px-5">
                 {% for post in odd_index_posts %}
                 <div class="card mb-3">
-                    <img class="card-img-top" src="{% static 'profile_pics/2.png' %}" alt="Card image cap">
+                    <a href="{{ post.get_absolute_url }}">
+                        {{ post.image }}
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title"><a href="{{ post.get_absolute_url }}" class="text-dark">{{ post.title }}</a></h5>
                         <p class="card-text" style="font-family: 'Raleway', sans-serif;">

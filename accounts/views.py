@@ -7,6 +7,9 @@ from .models import Profile
 from pages.templates.pages import page 
 from django.contrib.auth.views import LoginView
 from accounts.models import EmailList
+import random
+from PIL import Image
+import urllib3
 
 class CustomLoginView(LoginView):
     form_class = LoginForm
@@ -26,9 +29,18 @@ def user_registration(request):
             register_form = register_form.save(commit=False) 
             register_form.set_password(cd['password1']) 
             register_form.save()
-            
+
+            # select a random image as a temp profile picture 
+            # image_route = '/static/profile_pics/1.png'
+            image_route = 'users/profile_pics/1.png'
+            image_route_list = image_route.split('1', 1)
+            image_route_list[0] = image_route_list[0] + str(random.randint(1, 3))
+            image_route = ''.join(image_route_list)
+            # image_route = mark_safe(image_route)
+            Profile.objects.create(user=register_form, photo=image_route)
+        
             EmailList.objects.create(name=cd['username'], email=cd['email'])
-            Profile.objects.create(user=register_form)
+            
 
             return render(request, 
                             'registration/registration_done.html',
@@ -44,6 +56,7 @@ def user_registration(request):
 
 
 def profile(request):
+    success = 'empty'
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user,
                                  data=request.POST)
@@ -67,6 +80,7 @@ def profile(request):
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
+        
 
     return render(request, 'accounts/profile.html',{'user_form': user_form,
                                                     'profile_form': profile_form,
