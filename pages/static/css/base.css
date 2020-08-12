@@ -23,7 +23,6 @@
 form label{
     color: #000;
     text-transform: capitalize;
-
 }
 
 form input{
@@ -33,7 +32,25 @@ form input{
     border: 5px;
     border-color: red;
     text-align: left;
-    
+}
+
+textarea {
+    width: 300px;
+    height: 150px;
+    background-color: #fff;
+}
+
+.showcase{
+    margin-top: 0;
+    background-image: url('../images/coding.png');
+    background-repeat:no-repeat;
+    min-height: 600px;
+    background-size: cover;
+}
+
+.showcase p{
+    color: #cfcbcb;
+    font-size: 20px;
 }
 
 .authentication input{
@@ -58,20 +75,6 @@ form input{
 .search input{
     border-radius: 5px;
 }
-
-.showcase{
-    margin-top: 0;
-    background-image: url('../images/coding.png');
-    background-repeat:no-repeat;
-    min-height: 600px;
-    background-size: cover;
-}
-
-.showcase p{
-    color: #cfcbcb;
-    font-size: 20px;
-}
-
 
 .article-words{
     color: #000;
@@ -98,6 +101,7 @@ form input{
     color: #000;
     text-decoration: none;
 }
+
 .tag_button{
     padding: 3px 5px;
     text-transform: capitalize;
@@ -105,7 +109,6 @@ form input{
     background-color: #343a40;
     margin-left: 5px;
 }
-
 
 .tag_button a{
     color: white;
@@ -122,12 +125,6 @@ form input{
     background: #bdbcbc ;
 }
 
-
-.footer-ul li{
-    list-style: none;
-    padding-left: none;
-}
-
 .report{
     margin-left: 300px;
     margin-top: 20px;
@@ -135,7 +132,6 @@ form input{
     width: 25%;
     
 }
-
 
 .password_reset input{
     width: 25%;
@@ -149,6 +145,7 @@ form input{
 .reset_confirm input{
     width: 50%;
 }
+
 #list img{
     height: 300px;
     width: 400px;
@@ -174,13 +171,6 @@ form input{
     background-color: #f4f4f4;
 }
 
-textarea {
-    width: 300px;
-    height: 150px;
-    background-color: #fff;
-  }
-
-
 .options li{
     list-style: none;
 }
@@ -204,6 +194,11 @@ textarea {
 .comment_submit{
     width: 25%;
 }
+
+.footer-ul li{
+    list-style: none;
+    padding-left: none;
+}
     
    
 @media(max-width: 1025px){
@@ -213,19 +208,17 @@ textarea {
         max-width: 400px; 
     }
 
-    .blog_site_color{
-        background-color: #fff;
-        padding: 5px;
-        width: 100%;
-    }
-
     #list img{
         height: 300px;
         width: 300px;
         
     }
 
-    
+    .blog_site_color{
+        background-color: #fff;
+        padding: 5px;
+        width: 100%;
+    }
 }
 
 

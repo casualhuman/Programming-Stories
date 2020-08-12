@@ -2,19 +2,19 @@
 
 {% block content %}
 
-<section class="container">
+<section>
 
-    <div class="d-flex justify-content-center my-5 mx-md-5">
-        <div class="mx-md-5 remove">
+    <div class="d-flex justify-content-center my-5 mx-md-1">
+        <div class="mx-md-1">
             <form method='POST' class="authentication ">
                 {% csrf_token %}
                 {{ register_form.as_p }}
                 <input type="submit" value="SIGNUP" class="btn btn-warning text-dark">
             </form>
 
-            <p class="text-center pt-1">_______________ or _______________</p>
+            <!-- <p class="text-center pt-1">_______________ or _______________</p>
             <p class="bg-danger text-white p-1"><a href="{% url 'social:begin' 'google-oauth2' %}" class="text-white nav-link"><i class="fa fa-google fa-lg"></i> Signup with Google</a></p>
- 
+  -->
         </div>
     </div>
     

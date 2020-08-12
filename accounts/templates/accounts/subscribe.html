@@ -1,7 +1,8 @@
 {% extends 'pages/base.html' %}
-
+{% block title %}Subscribe{% endblock %}
 
 {% block content %}
+{% if not success %}
     <section class="container mt-5 w-75">
         <h4 class="text-center">Subscribe</h4>
         <form method="POST" class="authentication">
@@ -12,5 +13,14 @@
             </div>
         </form>
     </section>
+{% else %}
+
+<section class="container mt-5">
+    <h5>Subscribed successfully</h5>
+    <h6><i>{{ name }}</i>, welcome you would be the first to receive our stories </h6>
+    <p><a href="{% url 'thoughts:list_display' %}" class="text-danger">Go To Blog</a></p>
+
+</section>
+{% endif %}
 {% endblock %}
     

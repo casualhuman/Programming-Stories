@@ -14,10 +14,8 @@
     <!-- goggle fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@700&display=swap" rel="stylesheet">
-    
-    
    
+     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -28,14 +26,14 @@
     
 
 <body id="body">
-    <header id='header' class="text-dark bg-secondary">
+    <header id='header' class="text-dark bg-secondary" >
         <nav class="navbar navbar-expand-lg ml-md-3 pt-2" >
             <div>
                 <a href="" class="fa fa-bars fa-lg text-light nav-link navbar-toggler " data-toggle="collapse" data-target="#collapsibleNavbar"></a>
             </div>
             <div class="mx-auto remove">
                 <span >
-                    <a href="" class="navbar-brand text-light ml-0">PROGRAMMING STORIES</a>
+                    <a href="" class="text-warning navbar-brand ml-0">PROGRAMMING STORIES</a>
                 </span>
             </div>
             
@@ -72,7 +70,7 @@
                     </li>
 
                     <li class="p-2"">
-                        <a href="{% url 'pages:about' %}" 
+                        <a href="#" 
                             {% if section == "about" %}class="text-warning nav-link"
                             {%else%}class="nav-link text-dark"
                             {% endif %}>
@@ -82,7 +80,7 @@
                     </li>
 
                     <li class="p-2"">
-                        <a href="{% url 'pages:report-problem' %}" class="nav-link text-dark">
+                        <a href="#" class="nav-link text-dark">
                             Contact
                         </a>
                     </li>
@@ -105,11 +103,7 @@
                         
                         <a class="fa fa-cog fa-lg text-light nav-link" href="#" id="navbardrop" data-toggle="dropdown" aria-expanded="false">  
                         </a>
-                        
-                        <!-- <a class="fa fa-cog fa-lg text-light nav-link d-lg-none " href="#" id="navbardrop" data-toggle="dropdown" aria-expanded="false">  
-                        </a> -->
-                    
-                        
+                                  
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbardrop">
                             <a href="{% url 'profile' %}" class="dropdown-item">
                                 Profile

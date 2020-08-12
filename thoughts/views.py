@@ -1,15 +1,13 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import CommentForm
-from taggit.models import Tag
-from django.utils.safestring import mark_safe 
-from accounts.models import Profile
 from django import forms
+from django.contrib.auth.models import User 
+from django.utils.safestring import mark_safe  
+from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
 import math, random
-
-
-
+from .models import Post
+from taggit.models import Tag
+from .forms import CommentForm
+from accounts.models import Profile
 
 
 def list_display(request, tag_slug=None):
@@ -25,9 +23,9 @@ def list_display(request, tag_slug=None):
         tag = get_object_or_404(Tag, slug=tag_slug)
         objects = objects.filter(tags__in=[tag])   # find if the tag selected is in any of the objects returned previously
 
-    paginator = Paginator(objects, 10)  
+    paginator = Paginator(objects, 6)  
     page = request.GET.get('page')    
-    total_pages = range(1, math.ceil(objects.count() / 10) + 1)
+    total_pages = range(1, math.ceil(objects.count() / 6) + 1)
 
     try:
         posts = paginator.page(page)    # posts that should be in the current page 
@@ -78,32 +76,18 @@ def detail_display(request, year, month, day, post_slug, tag_slug=None):
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False) 
-            new_comment.post = post
              
-            # The post field under Comment model has not been field 
-            # so we add the current post we are in  to the post field
-            new_comment.name = request.user.username 
+            # fill the remaining fields that are empty after submission
+            new_comment.post = post
             new_comment.email = request.user.email
-            new_comment.photo = request.user.profile.photo
-
+            user = User.objects.get(username=request.user.username) # get the username from user db using the request given username
+            new_comment.user_name = user
+            
             new_comment.save()  
-        comment_form = CommentForm()
             
     else:
         comment_form = CommentForm()
 
-    # for static image 
-    # image_route = "{% static 'profile_pics/3.png' %}"
-    
-    # image_route = """<img  src= "/static/profile_pics/3.png" alt="John Doe" class="rounded-circle  mr-1" style="width:40px; height:40px;">"""
-    # image_route_list = image_route.split('3', 1)
-    # image_route_list[0] = image_route_list[0] + str(random.randint(1, 3))
-    # image_route = ''.join(image_route_list)
-    # image_route = mark_safe(image_route)
-
-    # profile = Profile.objects.list_values('photo', flat=True).filter(user=request.user.username)
-    # profile = profile[0]
-    
     
     return render(request, 'thoughts/pages/detail_display.html', {
                                                                   'posts': posts,
@@ -113,6 +97,5 @@ def detail_display(request, year, month, day, post_slug, tag_slug=None):
                                                                   'comment_form': comment_form,
                                                                   'new_comment': new_comment,
                                                                   'section': 'blog',
-                                                                #   'profile_pic': image_route
                                                                   }
     )

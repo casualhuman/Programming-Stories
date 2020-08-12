@@ -88,6 +88,6 @@ def profile(request):
 
 
 def subscribe(request):
-    return render(request, 'accounts/subscribe.html',)
+    return render(request, 'accounts/subscribe.html')
 
 

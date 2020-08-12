@@ -5,6 +5,7 @@
 <div class="blog_site_color ">
 <section class="container-fluid m-2">
     <div id="detail_display">
+        <!-- Actual Post -->
         <div class="media" >
             <div class="media-body">
                 <h3 class="text-center">{{ post.title }} </h3>
@@ -16,7 +17,7 @@
             </div>
         </div>
         
-
+        <!-- Tags -->
         <div class="py-3">
             {% for tag in post.tags.all %}
                 <span class="pr-2">
@@ -30,18 +31,22 @@
             {% endfor %}
         </div>
         
+        <!-- Comments -->
         <div class="remove pb-3">
+            {% if comments  %}
+                {% with comments.count as total_comments %}
+                    <h5>Comment{{ total_comments|pluralize }}</h5>
+                {% endwith %}
+            {% endif %}
+
             {% for comment in comments %}
-            {% with comments.count as total_comments %}
-                <h5>Comment{{ total_comments|pluralize }}</h5>
-            {% endwith %}
             <div class="d-flex">
                 <div>
                     {{ comment.profile_picture }}
                 </div>
 
                 <div class="bg-light p-2 mb-2">
-                    <h6>{{ comment.name }} <small><i>{{ comment.publish }}</i></small></h6>
+                    <h6>{{ comment.user_name }} <small><i>{{ comment.publish.date }}</i></small></h6>
                     <hr>
                     <p >{{ comment.comment|linebreaks }}</p>
                 </div>
@@ -54,22 +59,16 @@
             {% if user.is_authenticated %}
             
                 {% if new_comment %}
-                    <h6>Comment has been submitted</h6>
-                    <form method='POST'>
-                        {% csrf_token %}
-                        {{ comment_form.as_p }}
-                        <input type="submit" value="comment" class="btn btn-dark comment_submit">
-                    </form>
-
+                    <h6>Comment has been submitted: Back to <a href="{% url 'thoughts:list_display' %}">Blog</a></h6>
                 {% else %}
                     <h6>Comment:</h6>
                     <form method='POST' class="w-75">
                         {% csrf_token %}
                         {{ comment_form.as_p }}
-                        <!-- {{ comment_form.instance.comment }} -->
                         <input type="submit" value="submit" class="btn btn-dark comment_submit">
                     </form>
                 {% endif %}
+
             {% else %}
                 <h6> <a href="{% url 'login' %}" class="text-primary">Login </a>to comment <span class="text-warning">;)</span></h6>
             {% endif %}

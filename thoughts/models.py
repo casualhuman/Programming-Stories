@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 
 
-# Creates a manger that returns the published articles 
+# manger that returns the published articles 
 class PublishedManger(models.Manager):
     def get_query_set(self):
         return super()\
@@ -14,13 +14,12 @@ class PublishedManger(models.Manager):
             .filter(status='publish')
 
 
-# Creates Database that stores Thought Posts  that are written 
+# Post db 
 class Post(models.Model):
     status_choices = (
        ('publish', 'Publish'),
        ('draft', 'Draft')
     )
-
 
     title = models.CharField(max_length=50)
 
@@ -79,6 +78,7 @@ class Post(models.Model):
         
         )
     
+
     def image(self):
         """
         if post.showcase images is called directly it returns just a path this return the full image 
@@ -89,17 +89,18 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, 
-                                  on_delete = models.CASCADE,
-                                  related_name='comments',        
+    post = models.ForeignKey(
+        Post, 
+        on_delete = models.CASCADE,
+        related_name='comments',        
                             )
 
-    name = models.CharField(max_length=50, null=True)
+    user_name = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name='comments', blank=True, null=True)
 
     email = models.EmailField(null=True)
-
-    photo = models.ImageField(upload_to="comments/%Y/%m/%d",
-                              blank=True)
 
     comment = models.TextField()
 
@@ -113,15 +114,15 @@ class Comment(models.Model):
     
 
     def __str__(self): 
-        return f'Comment by {self.name} on {self.post}'
+        return f'Comment by {self.user_name} on {self.post}'
 
 
     def profile_picture(self):
         """
         if comment.profile_picture is called directly it returns just a path this return the full image 
         """
-        # class="rounded-circle  mr-1" style="width:40px;"
-        image_route = """<img src="/media/""" + str(self.photo.name) + """" alt="image" class="rounded-circle" style="width:40px; height:40px;">"""
+
+        image_route = f"""<img  src="{ str(self.user_name.profile.photo.url) }" alt="Image" class="rounded-circle" style="width:40px; height:40px;">"""
         return mark_safe(image_route)
 
 
