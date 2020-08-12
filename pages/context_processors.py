@@ -14,7 +14,6 @@ def subscribe_form(request):
 
             success = True
             name = subscribe_form.name
-            # return render(request, 'accounts/subscribe_done.html', {'name': subscribe_form.name})
             
     else:
         subscribe_form = EmailListForm()

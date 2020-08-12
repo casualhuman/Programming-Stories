@@ -30,6 +30,7 @@ class LoginForm(AuthenticationForm):
 User._meta.get_field('email').blank = False
 User._meta.get_field('email')._unique = True 
 
+
 class UserRegistrationForm(forms.ModelForm):
 
     password1 = forms.CharField(label='', 
@@ -95,10 +96,12 @@ class UserRegistrationForm(forms.ModelForm):
             
         return email
         
+
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name')
+
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:

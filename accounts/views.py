@@ -1,22 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm, EmailListForm
 from django.contrib import messages 
-from django.contrib.auth import authenticate, login as dj_login
-from .models import Profile
-from pages.templates.pages import page 
 from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate, login as dj_login
+from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm, EmailListForm
 from accounts.models import EmailList
+from pages.templates.pages import page 
+from .models import Profile
 import random
-from PIL import Image
-import urllib3
+
 
 class CustomLoginView(LoginView):
     form_class = LoginForm
     
 
 def user_registration(request):
-
     if request.method=='POST':
         register_form = UserRegistrationForm(request.POST)
 
@@ -31,14 +29,13 @@ def user_registration(request):
             register_form.save()
 
             # select a random image as a temp profile picture 
-            # image_route = '/static/profile_pics/1.png'
             image_route = 'users/profile_pics/1.png'
             image_route_list = image_route.split('1', 1)
-            image_route_list[0] = image_route_list[0] + str(random.randint(1, 3))
+            image_route_list[0] = image_route_list[0] + str(random.randint(1, 3)) 
             image_route = ''.join(image_route_list)
-            # image_route = mark_safe(image_route)
+
+            # create profile then add user to "email-list"
             Profile.objects.create(user=register_form, photo=image_route)
-        
             EmailList.objects.create(name=cd['username'], email=cd['email'])
             
 
@@ -68,9 +65,6 @@ def profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-
-            # # display a success message
-            # message.success('Profile updated successfully')
             success = True
 
         else:
@@ -81,7 +75,6 @@ def profile(request):
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
         
-
     return render(request, 'accounts/profile.html',{'user_form': user_form,
                                                     'profile_form': profile_form,
                                                     'success': success})

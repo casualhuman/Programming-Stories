@@ -52,8 +52,6 @@ class Post(models.Model):
         default='draft',
         max_length=20,
     )
-
-
     
     class Meta:
         ordering = ('-publish', )
@@ -62,10 +60,8 @@ class Post(models.Model):
     published = PublishedManger() # The custom publish manager
     tags = TaggableManager()
 
-
     def __str__(self):
         return self.title
-
 
     def get_absolute_url(self):
         return reverse('thoughts:detail_display', args=[
@@ -75,9 +71,7 @@ class Post(models.Model):
                                                     self.slug
 
                                                    ]
-        
         )
-    
 
     def image(self):
         """
@@ -108,14 +102,11 @@ class Comment(models.Model):
 
     active = models.BooleanField(default=True)
 
-
     class Meta: 
         ordering = ('-publish',)
     
-
     def __str__(self): 
         return f'Comment by {self.user_name} on {self.post}'
-
 
     def profile_picture(self):
         """

@@ -2,6 +2,7 @@
 <footer class="bg-dark article-words pb-3" style="overflow: hidden;">
     {% if not user.is_authenticated %}
     <h5 class="text-center pt-3 mr-md-5 pr-md-5 text-danger">SUBSCRIBE</h5>
+
     <!-- subscribe form - displays only on small and medium  screens  -->
     <form method="POST" class="d-lg-none mx-5 mb-3 subscribe_form_home">
         {% csrf_token %}
@@ -34,11 +35,16 @@
                 <!-- <h6>
                     <a href="#" class="text-secondary">Contact</a>
                 </h6> -->
+                
+                <h6>
+                    <a href="{% url 'pages:report-problem' %}" class="text-secondary">Report Problem</a>
+                </h6>
+
             </div>
         </div>
         
         {% if not user.is_authenticated %}
-        <!-- subscribe form in footer (does not display on small screens -->
+        <!-- subscribe form in footer (does not display on small screens ) -->
         <div class="mr-auto ml-5 pl-5 d-none d-lg-inline" >
             <form method="POST" class="subscribe_form_home">
                 {% csrf_token %}

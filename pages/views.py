@@ -1,13 +1,14 @@
 from django import forms 
 from django.shortcuts import render
-from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.core.mail import send_mail 
+from django.utils.safestring import mark_safe
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from .forms import ReportProblemForm, SearchForm, ReportProblemFormLoggedInUser
 from .models import ReportProblem
 from thoughts.models import Post
 from accounts.views import EmailListForm
 from accounts.models import Profile
-from django.utils.safestring import mark_safe
+
 
 def home_page_view(request):
     posts = Post.published.all().order_by('-publish')[:5]
@@ -66,17 +67,17 @@ def report_problem(request):
 
             report_form.save()
 
-            # Send email to developer about problem also 
-            subject = f"{ report_form.name } Reported a bug in randomthoughts.com"
+            # # Send email to developer about problem also 
+            # subject = f"{ report_form.name } Reported a bug in randomthoughts.com"
 
-            body = f"""
-                        name: { report_form.name }
-                        email: { report_form.email }
-                        problem: { report_form.problem }
+            # body = f"""
+            #             name: { report_form.name }
+            #             email: { report_form.email }
+            #             problem: { report_form.problem }
 
-                    """
+            #         """
 
-            send_mail(subject, body, report_form.email, ['abdulrahimjallohaarj@gmail.com',])
+            # send_mail(subject, body, report_form.email, ['abdulrahimjallohaarj@gmail.com',])
         
             sent = True
     
