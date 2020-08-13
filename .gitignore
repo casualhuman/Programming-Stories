@@ -1,7 +1,2 @@
-mysite.com.crt
-mysite.com.csr
-mysite.com.ext
-mysite.com.key
-myCA.srl
-myCA.pem
-myCA.key
+/CA
+.env
