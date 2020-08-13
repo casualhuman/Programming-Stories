@@ -19,4 +19,4 @@ class EmailList(models.Model):
     email = models.EmailField()
 
     def __str__(self):
-        return email 
+        return self.email 

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+from decouple import config
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -20,8 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '%aq65ps!j51iaxk)yjsnr479-zgp*7#@b!86_$7jp1ie2_5=oo'
-SECRET_KEY = os.environ.get('SECRET_KEY_1')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -89,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'RandomThoughtsDataBase',
         'USER': 'RahimJalloh',
-        'PASSWORD': '20022202',
+        'PASSWORD': config('DB_PASSWORD'),
     }
 }
 
@@ -152,8 +151,8 @@ AUTHENTICATION_BACKENDS = [
 
 
 SOCIAL_AUTH_FACEBOOK_KEY = '595556557620604'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'fb5376b50ca6934ef5ce408808920e09'
+SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '263281999972-ce5t1ok2t4pnhfa2t2kqnl820r6ubknb.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'AiCh5xoM1-2cA6lpypviCpyD'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
