@@ -21,11 +21,11 @@ def subscribe_form(request):
     return {'subscribe_form': subscribe_form, 'success': success, 'name':name}
             
             
-def base_view(request):
-    # get user profile picture and make advailable to html
-    profile_photo = False
-    if request.user.is_authenticated and request.user.profile:
-        profile_photo = f"""<img  src="{ request.user.profile.photo.url }" alt="John Doe" class="rounded-circle  mr-1" style="width:30px; height:30px;">"""
-        profile_photo = mark_safe(profile_photo)
+# def base_view(request):
+#     # get user profile picture and make advailable to html
+#     profile_photo = False
+#     if request.user.is_authenticated and request.user.profile:
+#         profile_photo = f"""<img  src="{ request.user.profile.photo.url }" alt="John Doe" class="rounded-circle  mr-1" style="width:30px; height:30px;">"""
+#         profile_photo = mark_safe(profile_photo)
 
-    return {'profile_photo': profile_photo}
+#     return {'profile_photo': profile_photo}
