@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 from decouple import config
 import os
+import django_heroku 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -91,6 +92,10 @@ DATABASES = {
         'NAME': 'RandomThoughtsDataBase',
         'USER': 'RahimJalloh',
         'PASSWORD': config('DB_PASSWORD'),
+        # 'HOST': 'https://programmingstories.herokuapp.com/',
+        'HOST': '',
+        # 'PORT': '5432',
+        'PORT': '5432'
     }
 }
 
@@ -180,4 +185,6 @@ AWS_S3_REGION_NAME = 'eu-west-2'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+django_heroku.settings(locals())
 
