@@ -78,7 +78,8 @@ class Post(models.Model):
         if post.showcase images is called directly it returns just a path this return the full image 
         """
 
-        image_route = """<img class="card-img-top" src="/media/""" + str(self.showcase_image.name) + """" alt="Card image cap">"""
+        # image_route = """<img class="card-img-top" src="/media/""" + str(self.showcase_image.url) + """" alt="Card image cap">"""
+        image_route = f"""<img class="card-img-top" src="{ str(self.showcase_image.url) }" alt="Image">"""
         return mark_safe(image_route)
 
 

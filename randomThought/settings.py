@@ -74,7 +74,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'pages.context_processors.subscribe_form',
-                # 'pages.context_processors.base_view'
+                'pages.context_processors.base_view'
             ],
         },
     },
@@ -92,9 +92,7 @@ DATABASES = {
         'NAME': 'RandomThoughtsDataBase',
         'USER': 'RahimJalloh',
         'PASSWORD': config('DB_PASSWORD'),
-        # 'HOST': 'https://programmingstories.herokuapp.com/',
         'HOST': '',
-        # 'PORT': '5432',
         'PORT': '5432'
     }
 }
@@ -160,7 +158,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # For user to be able to login with various methods 
-
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'accounts.authentication.EmailAuthenticationBackend',
