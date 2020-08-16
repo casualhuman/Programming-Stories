@@ -15,22 +15,22 @@ def home_page_view(request):
 
     #create 5 different items for distinct display in the home_page
     # the homepage would always only display 5 recent posts 
-    # posts = [post for post in posts]
-    # post_1 = posts[0]
-    # post_2 = posts[1]
-    # post_3 = posts[2]
-    # post_4 = posts[3]
-    # post_5 = posts[4]
+    posts = [post for post in posts]
+    post_1 = posts[0]
+    post_2 = posts[1]
+    post_3 = posts[2]
+    post_4 = posts[3]
+    post_5 = posts[4]
 
 
     context = {
         'section': 'home',
         'posts': posts,
-        # 'post_1': post_1,
-        # 'post_2': post_2,
-        # 'post_3': post_3,
-        # 'post_4': post_4,
-        # 'post_5': post_5,
+        'post_1': post_1,
+        'post_2': post_2,
+        'post_3': post_3,
+        'post_4': post_4,
+        'post_5': post_5,
     }
         
     return render(request, 'pages/page/home.html', context=context)
